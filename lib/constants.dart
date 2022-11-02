@@ -32,3 +32,22 @@ const kPagePadding = EdgeInsets.symmetric(
   horizontal: 17,
   vertical: 20,
 );
+
+const kInputDecoration = InputDecoration(
+  hintText: 'Email',
+  hintStyle: TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 15.5,
+  ),
+  fillColor: Colors.green,
+  border: OutlineInputBorder(
+    gapPadding: 20,
+    borderRadius: BorderRadius.all(
+      Radius.circular(15),
+    ),
+    borderSide: BorderSide(
+      width: 10,
+      color: kScaffoldColor,
+    ),
+  ),
+);

@@ -31,20 +31,6 @@ class MyTheme {
         primary: Colors.white,
       ),
     ),
-    inputDecorationTheme: const InputDecorationTheme(
-      errorStyle: TextStyle(
-        color: kShadowColor,
-      ),
-      errorBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: kShadowColor),
-      ),
-      enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: kTertiaryColor),
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: kTertiaryColor),
-      ),
-    ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: kScaffoldColor,
     cardTheme: CardTheme(
