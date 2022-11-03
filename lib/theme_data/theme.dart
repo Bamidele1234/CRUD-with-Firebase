@@ -15,6 +15,7 @@ class MyTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
+        maximumSize: const Size(100, 50),
         primary: Colors.white,
         padding: const EdgeInsets.all(0),
         textStyle: const TextStyle(

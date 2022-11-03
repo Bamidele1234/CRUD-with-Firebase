@@ -28,18 +28,19 @@ const kPageDecoration = BoxDecoration(
   ),
 );
 
+// The padding around each page
 const kPagePadding = EdgeInsets.symmetric(
   horizontal: 17,
   vertical: 20,
 );
 
+// Decoration for the text fields
 const kInputDecoration = InputDecoration(
-  hintText: 'Email',
+  hintText: '',
   hintStyle: TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 15.5,
   ),
-  fillColor: Colors.green,
   border: OutlineInputBorder(
     gapPadding: 20,
     borderRadius: BorderRadius.all(
@@ -50,4 +51,27 @@ const kInputDecoration = InputDecoration(
       color: kScaffoldColor,
     ),
   ),
+);
+
+// The SIGN IN button style
+final kSignInStyle = ElevatedButton.styleFrom(
+  primary: kScaffoldColor,
+  textStyle: const TextStyle(
+    fontSize: 18,
+    letterSpacing: 1.2,
+  ),
+  elevation: 12,
+  minimumSize: const Size(100, 52),
+  shape: kButtonShape,
+);
+
+// The Register button style
+final kRegisterStyle = ElevatedButton.styleFrom(
+  textStyle: const TextStyle(
+    fontSize: 18,
+    letterSpacing: 1.2,
+  ),
+  side: const BorderSide(color: kScaffoldColor, width: 1.7),
+  minimumSize: const Size(100, 52),
+  shape: kButtonShape,
 );

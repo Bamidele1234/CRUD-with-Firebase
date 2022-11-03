@@ -11,29 +11,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // LOGIN button style
-    final ButtonStyle style1 = ElevatedButton.styleFrom(
-      primary: kScaffoldColor,
-      textStyle: const TextStyle(
-        fontSize: 18,
-        letterSpacing: 1.2,
-      ),
-      elevation: 12,
-      minimumSize: const Size(100, 50),
-      shape: kButtonShape,
-    );
-
-    // SIGNUP button style
-    final ButtonStyle style2 = OutlinedButton.styleFrom(
-      textStyle: const TextStyle(
-        fontSize: 18,
-        letterSpacing: 1.2,
-      ),
-      side: const BorderSide(color: kScaffoldColor, width: 1.7),
-      minimumSize: const Size(100, 50),
-      shape: kButtonShape,
-    );
-
     return Scaffold(
       body: Container(
         decoration: kPageDecoration,
@@ -61,11 +38,11 @@ class HomeScreen extends StatelessWidget {
                   height: 135,
                 ),
                 ElevatedButton(
-                  style: style1,
+                  style: kSignInStyle,
                   onPressed: () {
                     context.router.pushNamed(LoginScreen.tag);
                   },
-                  child: const Text("Login"),
+                  child: const Text("Sign in"),
                 ),
                 const SizedBox(
                   height: 20,
@@ -74,8 +51,8 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     context.router.pushNamed(SignUpScreen.tag);
                   },
-                  style: style2,
-                  child: const Text("Sign Up"),
+                  style: kRegisterStyle,
+                  child: const Text("Register"),
                 ),
               ],
             ),
