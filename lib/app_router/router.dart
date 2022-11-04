@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:exercise6/screens/login_screen.dart';
+import 'package:exercise6/screens/reset_password.dart';
 import 'package:exercise6/screens/sign_up.dart';
 import 'package:exercise6/screens/splash_screen.dart';
 
@@ -23,6 +24,12 @@ import '../screens/home_screen.dart';
     CustomRoute(
       path: SignUpScreen.tag,
       page: SignUpScreen,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 150,
+    ),
+    CustomRoute(
+      path: ResetPassword.tag,
+      page: ResetPassword,
       transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 150,
     ),

@@ -46,7 +46,7 @@ final kSignInStyle = ElevatedButton.styleFrom(
   primary: kScaffoldColor,
   textStyle: TextStyle(
     fontSize: kbuttonTextSize,
-    letterSpacing: 1.2,
+    letterSpacing: 1,
   ),
   elevation: 12,
   minimumSize: const Size(100, 52),
@@ -57,7 +57,7 @@ final kSignInStyle = ElevatedButton.styleFrom(
 final kRegisterStyle = ElevatedButton.styleFrom(
   textStyle: TextStyle(
     fontSize: kbuttonTextSize,
-    letterSpacing: 1.2,
+    letterSpacing: 1,
   ),
   side: const BorderSide(color: kScaffoldColor, width: 1.7),
   minimumSize: const Size(100, 52),
