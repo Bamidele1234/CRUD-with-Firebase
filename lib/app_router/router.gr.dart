@@ -41,9 +41,11 @@ class AppRouter extends _i5.RootStackRouter {
       );
     },
     LoginScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginScreenRouteArgs>(
+          orElse: () => const LoginScreenRouteArgs());
       return _i5.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i3.LoginScreen(),
+        child: _i3.LoginScreen(key: args.key),
         transitionsBuilder: _i5.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 150,
         opaque: true,
@@ -51,9 +53,11 @@ class AppRouter extends _i5.RootStackRouter {
       );
     },
     SignUpScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<SignUpScreenRouteArgs>(
+          orElse: () => const SignUpScreenRouteArgs());
       return _i5.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i4.SignUpScreen(),
+        child: _i4.SignUpScreen(key: args.key),
         transitionsBuilder: _i5.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 150,
         opaque: true,
@@ -109,24 +113,48 @@ class HomeScreenRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.LoginScreen]
-class LoginScreenRoute extends _i5.PageRouteInfo<void> {
-  const LoginScreenRoute()
+class LoginScreenRoute extends _i5.PageRouteInfo<LoginScreenRouteArgs> {
+  LoginScreenRoute({_i6.Key? key})
       : super(
           LoginScreenRoute.name,
           path: '/login',
+          args: LoginScreenRouteArgs(key: key),
         );
 
   static const String name = 'LoginScreenRoute';
 }
 
+class LoginScreenRouteArgs {
+  const LoginScreenRouteArgs({this.key});
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'LoginScreenRouteArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i4.SignUpScreen]
-class SignUpScreenRoute extends _i5.PageRouteInfo<void> {
-  const SignUpScreenRoute()
+class SignUpScreenRoute extends _i5.PageRouteInfo<SignUpScreenRouteArgs> {
+  SignUpScreenRoute({_i6.Key? key})
       : super(
           SignUpScreenRoute.name,
           path: '/signup',
+          args: SignUpScreenRouteArgs(key: key),
         );
 
   static const String name = 'SignUpScreenRoute';
+}
+
+class SignUpScreenRouteArgs {
+  const SignUpScreenRouteArgs({this.key});
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpScreenRouteArgs{key: $key}';
+  }
 }

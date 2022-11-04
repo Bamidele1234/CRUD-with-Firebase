@@ -1,22 +1,22 @@
+import 'package:exercise6/screens/login_screen.dart';
+import 'package:exercise6/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 
 // Essential Colors
 const kScaffoldColor = Color(0xFF0D1020);
-const kListTileColor = Color(0xFF1D1E33);
-const kSecondaryColor = Color(0xFFEB1555);
-const kTertiaryColor = Color(0xff8A95D0);
 const kShadowColor = Color(0xffEE2F69);
-const kPopUpColor = Color(0xff12172B);
 const kGradientColor = Color(0xFF710928);
 
-// The border for the Signup and Login Screen
+double kbuttonTextSize = 15;
+
+/// The border for the [SignUpScreen] and [LoginScreen]
 const kButtonShape = RoundedRectangleBorder(
   borderRadius: BorderRadius.all(
-    Radius.circular(27),
+    Radius.circular(25),
   ),
 );
 
-// The Gradient Decoration on each page
+/// The Gradient Decoration on each page
 const kPageDecoration = BoxDecoration(
   gradient: LinearGradient(
     begin: Alignment.topCenter,
@@ -28,36 +28,24 @@ const kPageDecoration = BoxDecoration(
   ),
 );
 
-// The padding around each page
+/// The padding around each page
 const kPagePadding = EdgeInsets.symmetric(
-  horizontal: 17,
+  horizontal: 18,
   vertical: 20,
 );
 
-// Decoration for the text fields
-const kInputDecoration = InputDecoration(
-  hintText: '',
-  hintStyle: TextStyle(
-    fontWeight: FontWeight.w600,
-    fontSize: 15.5,
-  ),
-  border: OutlineInputBorder(
-    gapPadding: 20,
-    borderRadius: BorderRadius.all(
-      Radius.circular(15),
-    ),
-    borderSide: BorderSide(
-      width: 10,
-      color: kScaffoldColor,
-    ),
-  ),
+/// The style of the main texts on the [SignUpScreen] and [LoginScreen]
+final kMainTextStyle = TextStyle(
+  fontSize: 33,
+  fontWeight: FontWeight.w500,
+  color: Colors.white.withOpacity(0.95),
 );
 
-// The SIGN IN button style
+/// The SIGN IN button style
 final kSignInStyle = ElevatedButton.styleFrom(
   primary: kScaffoldColor,
-  textStyle: const TextStyle(
-    fontSize: 18,
+  textStyle: TextStyle(
+    fontSize: kbuttonTextSize,
     letterSpacing: 1.2,
   ),
   elevation: 12,
@@ -65,13 +53,21 @@ final kSignInStyle = ElevatedButton.styleFrom(
   shape: kButtonShape,
 );
 
-// The Register button style
+/// The Register button style
 final kRegisterStyle = ElevatedButton.styleFrom(
-  textStyle: const TextStyle(
-    fontSize: 18,
+  textStyle: TextStyle(
+    fontSize: kbuttonTextSize,
     letterSpacing: 1.2,
   ),
   side: const BorderSide(color: kScaffoldColor, width: 1.7),
   minimumSize: const Size(100, 52),
   shape: kButtonShape,
+);
+
+/// The border for the input fields
+const kmyBorder = OutlineInputBorder(
+  borderSide: BorderSide(color: kShadowColor),
+  borderRadius: BorderRadius.all(
+    Radius.circular(15),
+  ),
 );

@@ -1,18 +1,25 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:exercise6/screens/sign_up.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
 
   static const tag = '/login';
+  final myEmailController = TextEditingController();
+  final myPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
         body: Container(
           decoration: kPageDecoration,
           child: Padding(
@@ -22,39 +29,40 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 70),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 70),
                     child: Text(
                       'Let\'s sign you in',
                       textAlign: TextAlign.start,
-                      style:
-                          TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+                      style: kMainTextStyle,
                     ),
                   ),
                   Form(
-                      child: Column(
-                    children: [],
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: TextField(
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15.5,
-                      ),
-                      decoration: kInputDecoration.copyWith(hintText: 'Email'),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12, bottom: 10),
-                    child: TextField(
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15.5,
-                      ),
-                      decoration: kInputDecoration.copyWith(
-                        hintText: 'Password',
-                      ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 40),
+                          child: TextFormField(
+                            maxLength: 40,
+                            controller: myEmailController,
+                            decoration: const InputDecoration(
+                              hintText: 'Email',
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 8,
+                            bottom: 10,
+                          ),
+                          child: TextFormField(
+                            controller: myPasswordController,
+                            decoration: const InputDecoration(
+                              hintText: 'Password',
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   GestureDetector(
@@ -80,10 +88,10 @@ class LoginScreen extends StatelessWidget {
                   ElevatedButton(
                     style: kSignInStyle,
                     onPressed: () {},
-                    child: const Text("Sign in"),
+                    child: const Text("Sign In"),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 8,
                   ),
                   Center(
                     child: RichText(
@@ -105,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                // Single tapped.
+                                context.router.replaceNamed(SignUpScreen.tag);
                               },
                           )
                         ],

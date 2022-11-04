@@ -4,29 +4,6 @@ import '../constants.dart';
 /// Vital theme data
 class MyTheme {
   ThemeData themeData = ThemeData.dark().copyWith(
-    // canvasColor: Colors.transparent, => I could also use this
-    popupMenuTheme: const PopupMenuThemeData(
-      color: kPopUpColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(12),
-        ),
-      ),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        maximumSize: const Size(100, 50),
-        primary: Colors.white,
-        padding: const EdgeInsets.all(0),
-        textStyle: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-    ),
-    bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: kListTileColor,
-    ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         primary: Colors.white,
@@ -34,29 +11,25 @@ class MyTheme {
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: kScaffoldColor,
-    cardTheme: CardTheme(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: const TextStyle(
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
       ),
-    ),
-    listTileTheme: ListTileThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+      errorStyle: const TextStyle(
+        color: kShadowColor,
       ),
-      horizontalTitleGap: 7,
-      style: ListTileStyle.drawer,
-      tileColor: kListTileColor,
-    ),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: kSecondaryColor,
-    ),
-    snackBarTheme: const SnackBarThemeData(
-      backgroundColor: kTertiaryColor,
-      contentTextStyle: TextStyle(
-        color: Colors.black87,
-        fontSize: 17.5,
-        fontWeight: FontWeight.w400,
-        fontStyle: FontStyle.italic,
+      errorBorder: kmyBorder,
+      enabledBorder: kmyBorder.copyWith(
+        borderSide: BorderSide(
+          color: Colors.white.withOpacity(0.4),
+          width: 1.5,
+        ),
+      ),
+      focusedBorder: kmyBorder.copyWith(
+        borderSide: const BorderSide(
+          color: Colors.white,
+        ),
       ),
     ),
   );

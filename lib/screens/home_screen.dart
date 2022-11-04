@@ -29,8 +29,7 @@ class HomeScreen extends StatelessWidget {
                 const Text(
                   "All your tasks in one place",
                   style: TextStyle(
-                    fontSize: 22,
-                    fontFamily: 'Asap',
+                    fontSize: 20,
                   ),
                   textAlign: TextAlign.center,
                 ),
