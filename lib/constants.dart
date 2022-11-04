@@ -19,8 +19,8 @@ const kButtonShape = RoundedRectangleBorder(
 /// The Gradient Decoration on each page
 const kPageDecoration = BoxDecoration(
   gradient: LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
     colors: [
       kScaffoldColor,
       kGradientColor,
@@ -36,9 +36,10 @@ const kPagePadding = EdgeInsets.symmetric(
 
 /// The style of the main texts on the [SignUpScreen] and [LoginScreen]
 final kMainTextStyle = TextStyle(
-  fontSize: 33,
+  fontSize: 34,
   fontWeight: FontWeight.w500,
   color: Colors.white.withOpacity(0.95),
+  letterSpacing: 0.8,
 );
 
 /// The SIGN IN button style

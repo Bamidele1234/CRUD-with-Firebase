@@ -12,48 +12,51 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: kPageDecoration,
-        child: Padding(
-          padding: kPagePadding,
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.done_rounded,
-                  size: 135,
-                  color: kShadowColor,
-                ),
-                const Text(
-                  "All your tasks in one place",
-                  style: TextStyle(
-                    fontSize: 20,
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: Container(
+          decoration: kPageDecoration,
+          child: Padding(
+            padding: kPagePadding,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.done_rounded,
+                    size: 140,
+                    color: kShadowColor,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 135,
-                ),
-                ElevatedButton(
-                  style: kSignInStyle,
-                  onPressed: () {
-                    context.router.pushNamed(LoginScreen.tag);
-                  },
-                  child: const Text("Sign in"),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                OutlinedButton(
-                  onPressed: () {
-                    context.router.pushNamed(SignUpScreen.tag);
-                  },
-                  style: kRegisterStyle,
-                  child: const Text("Register"),
-                ),
-              ],
+                  const Text(
+                    "All your tasks in one place",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 135,
+                  ),
+                  ElevatedButton(
+                    style: kSignInStyle,
+                    onPressed: () {
+                      context.router.pushNamed(LoginScreen.tag);
+                    },
+                    child: const Text("Sign in"),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  OutlinedButton(
+                    onPressed: () {
+                      context.router.pushNamed(SignUpScreen.tag);
+                    },
+                    style: kRegisterStyle,
+                    child: const Text("Register"),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -66,9 +66,11 @@ class AppRouter extends _i6.RootStackRouter {
       );
     },
     ResetPasswordRoute.name: (routeData) {
+      final args = routeData.argsAs<ResetPasswordRouteArgs>(
+          orElse: () => const ResetPasswordRouteArgs());
       return _i6.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i5.ResetPassword(),
+        child: _i5.ResetPassword(key: args.key),
         transitionsBuilder: _i6.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 150,
         opaque: true,
@@ -176,12 +178,24 @@ class SignUpScreenRouteArgs {
 
 /// generated route for
 /// [_i5.ResetPassword]
-class ResetPasswordRoute extends _i6.PageRouteInfo<void> {
-  const ResetPasswordRoute()
+class ResetPasswordRoute extends _i6.PageRouteInfo<ResetPasswordRouteArgs> {
+  ResetPasswordRoute({_i7.Key? key})
       : super(
           ResetPasswordRoute.name,
           path: '/reset',
+          args: ResetPasswordRouteArgs(key: key),
         );
 
   static const String name = 'ResetPasswordRoute';
+}
+
+class ResetPasswordRouteArgs {
+  const ResetPasswordRouteArgs({this.key});
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'ResetPasswordRouteArgs{key: $key}';
+  }
 }

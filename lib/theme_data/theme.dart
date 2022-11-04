@@ -29,6 +29,7 @@ class MyTheme {
       focusedBorder: kmyBorder.copyWith(
         borderSide: const BorderSide(
           color: Colors.white,
+          width: 2.2,
         ),
       ),
     ),
