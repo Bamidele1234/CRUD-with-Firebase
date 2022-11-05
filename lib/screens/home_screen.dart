@@ -13,9 +13,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: Container(
-          decoration: kPageDecoration,
+      body: Container(
+        decoration: kPageDecoration,
+        child: SafeArea(
           child: Padding(
             padding: kPagePadding,
             child: Center(

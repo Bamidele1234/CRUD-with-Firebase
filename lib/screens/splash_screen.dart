@@ -23,7 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // Navigate to the HomeScreen 2 secs after this screen has been initialized
   startTime() async {
-    return Timer(const Duration(milliseconds: 2000), myRoute);
+    return Timer(
+      const Duration(milliseconds: 2000),
+      myRoute,
+    );
   }
 
   myRoute() => context.router.replaceNamed(HomeScreen.tag);
@@ -31,9 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          decoration: kPageDecoration,
+      body: Container(
+        decoration: kPageDecoration,
+        child: SafeArea(
           child: Center(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 80),

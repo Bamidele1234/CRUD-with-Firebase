@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 import '../reusables/back_button.dart';
+import 'body1_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -20,9 +21,9 @@ class LoginScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Container(
-            decoration: kPageDecoration,
+        body: Container(
+          decoration: kPageDecoration,
+          child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -91,7 +92,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           style: kSignInStyle,
-                          onPressed: () {},
+                          onPressed: () {
+                            context.router.pushNamed(Body1Screen.tag);
+                          },
                           child: const Text("Sign In"),
                         ),
                         const SizedBox(

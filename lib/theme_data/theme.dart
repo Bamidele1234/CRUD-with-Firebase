@@ -10,7 +10,9 @@ class MyTheme {
       ),
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    scaffoldBackgroundColor: kScaffoldColor,
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: kScaffoldColor,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: const TextStyle(
         fontWeight: FontWeight.w600,
@@ -32,6 +34,9 @@ class MyTheme {
           width: 2.2,
         ),
       ),
+    ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: kSheetColor,
     ),
   );
 }

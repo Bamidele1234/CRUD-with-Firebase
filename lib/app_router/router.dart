@@ -4,35 +4,44 @@ import 'package:exercise6/screens/reset_password.dart';
 import 'package:exercise6/screens/sign_up.dart';
 import 'package:exercise6/screens/splash_screen.dart';
 
+import '../screens/body1_screen.dart';
 import '../screens/home_screen.dart';
 
 @AdaptiveAutoRouter(
   routes: [
-    AutoRoute(page: SplashScreen, initial: true),
+    AutoRoute(page: Body1Screen, initial: true),
     CustomRoute(
       path: HomeScreen.tag,
       page: HomeScreen,
       transitionsBuilder: TransitionsBuilders.slideLeft,
-      durationInMilliseconds: 350,
+      durationInMilliseconds: 300,
     ),
     CustomRoute(
       path: LoginScreen.tag,
       page: LoginScreen,
       transitionsBuilder: TransitionsBuilders.slideLeft,
-      durationInMilliseconds: 150,
+      durationInMilliseconds: 100,
     ),
     CustomRoute(
       path: SignUpScreen.tag,
       page: SignUpScreen,
       transitionsBuilder: TransitionsBuilders.slideLeft,
-      durationInMilliseconds: 150,
+      durationInMilliseconds: 100,
     ),
     CustomRoute(
       path: ResetPassword.tag,
       page: ResetPassword,
       transitionsBuilder: TransitionsBuilders.slideLeft,
-      durationInMilliseconds: 150,
+      durationInMilliseconds: 100,
     ),
+    /*
+    CustomRoute(
+      path: Body1Screen.tag,
+      page: Body1Screen,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 100,
+    ),
+     */
   ],
 )
 class $AppRouter {}

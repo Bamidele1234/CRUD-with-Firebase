@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:exercise6/constants.dart';
+import 'package:exercise6/screens/body1_screen.dart';
 import 'package:exercise6/screens/login_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,9 @@ class SignUpScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Container(
-            decoration: kPageDecoration,
+        body: Container(
+          decoration: kPageDecoration,
+          child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -81,7 +82,9 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           style: kSignInStyle,
-                          onPressed: () {},
+                          onPressed: () {
+                            context.router.pushNamed(Body1Screen.tag);
+                          },
                           child: const Text("Register Now"),
                         ),
                         const SizedBox(

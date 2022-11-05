@@ -12,11 +12,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:exercise6/screens/body1_screen.dart' as _i1;
 import 'package:exercise6/screens/home_screen.dart' as _i2;
 import 'package:exercise6/screens/login_screen.dart' as _i3;
 import 'package:exercise6/screens/reset_password.dart' as _i5;
 import 'package:exercise6/screens/sign_up.dart' as _i4;
-import 'package:exercise6/screens/splash_screen.dart' as _i1;
 import 'package:flutter/material.dart' as _i7;
 
 class AppRouter extends _i6.RootStackRouter {
@@ -25,10 +25,10 @@ class AppRouter extends _i6.RootStackRouter {
 
   @override
   final Map<String, _i6.PageFactory> pagesMap = {
-    SplashScreenRoute.name: (routeData) {
+    Body1ScreenRoute.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i1.SplashScreen(),
+        child: const _i1.Body1Screen(),
       );
     },
     HomeScreenRoute.name: (routeData) {
@@ -36,7 +36,7 @@ class AppRouter extends _i6.RootStackRouter {
         routeData: routeData,
         child: const _i2.HomeScreen(),
         transitionsBuilder: _i6.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 350,
+        durationInMilliseconds: 300,
         opaque: true,
         barrierDismissible: false,
       );
@@ -48,7 +48,7 @@ class AppRouter extends _i6.RootStackRouter {
         routeData: routeData,
         child: _i3.LoginScreen(key: args.key),
         transitionsBuilder: _i6.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 150,
+        durationInMilliseconds: 100,
         opaque: true,
         barrierDismissible: false,
       );
@@ -60,7 +60,7 @@ class AppRouter extends _i6.RootStackRouter {
         routeData: routeData,
         child: _i4.SignUpScreen(key: args.key),
         transitionsBuilder: _i6.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 150,
+        durationInMilliseconds: 100,
         opaque: true,
         barrierDismissible: false,
       );
@@ -72,7 +72,7 @@ class AppRouter extends _i6.RootStackRouter {
         routeData: routeData,
         child: _i5.ResetPassword(key: args.key),
         transitionsBuilder: _i6.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 150,
+        durationInMilliseconds: 100,
         opaque: true,
         barrierDismissible: false,
       );
@@ -82,7 +82,7 @@ class AppRouter extends _i6.RootStackRouter {
   @override
   List<_i6.RouteConfig> get routes => [
         _i6.RouteConfig(
-          SplashScreenRoute.name,
+          Body1ScreenRoute.name,
           path: '/',
         ),
         _i6.RouteConfig(
@@ -105,15 +105,15 @@ class AppRouter extends _i6.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.SplashScreen]
-class SplashScreenRoute extends _i6.PageRouteInfo<void> {
-  const SplashScreenRoute()
+/// [_i1.Body1Screen]
+class Body1ScreenRoute extends _i6.PageRouteInfo<void> {
+  const Body1ScreenRoute()
       : super(
-          SplashScreenRoute.name,
+          Body1ScreenRoute.name,
           path: '/',
         );
 
-  static const String name = 'SplashScreenRoute';
+  static const String name = 'Body1ScreenRoute';
 }
 
 /// generated route for

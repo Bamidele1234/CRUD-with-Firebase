@@ -5,6 +5,7 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'app_router/router.gr.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

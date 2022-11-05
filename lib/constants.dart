@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 const kScaffoldColor = Color(0xFF0D1020);
 const kShadowColor = Color(0xffEE2F69);
 const kGradientColor = Color(0xFF710928);
+const kSheetColor = Color(0xFF170F20);
 
 double kbuttonTextSize = 15;
 
@@ -70,5 +71,13 @@ const kmyBorder = OutlineInputBorder(
   borderSide: BorderSide(color: kShadowColor),
   borderRadius: BorderRadius.all(
     Radius.circular(15),
+  ),
+);
+
+// The shape of the bottomModalSheet
+const kRoundedBorder = RoundedRectangleBorder(
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(30.0),
+    topRight: Radius.circular(30.0),
   ),
 );
