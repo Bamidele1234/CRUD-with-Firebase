@@ -31,7 +31,7 @@ class Body1Screen extends StatelessWidget {
             tooltip: 'Add a task',
             child: const Icon(
               Icons.add,
-              size: 33,
+              size: 30,
               color: Colors.white,
             ),
           ),
@@ -42,46 +42,41 @@ class Body1Screen extends StatelessWidget {
           child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
               children: [
-                const MyBackButton(),
-                Padding(
-                  padding: kPagePadding,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: const [
-                      Text(
-                        'Tasks',
-                        style: TextStyle(
-                          fontFamily: 'Asap',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 45,
-                          letterSpacing: 1.5,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 5),
-                        child: Text(
-                          '12 pending ',
+                const MyBackButton(myPadding: 6),
+                Expanded(
+                  child: Padding(
+                    padding: kPagePadding.copyWith(
+                        top: 10, bottom: 12, left: 15, right: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: const [
+                        Text(
+                          'Tasks',
                           style: TextStyle(
-                            fontSize: 18,
-                            letterSpacing: 1.2,
+                            fontFamily: 'Asap',
                             fontWeight: FontWeight.w500,
+                            fontSize: 45,
+                            letterSpacing: 1.5,
+                            fontStyle: FontStyle.italic,
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20,
-                          horizontal: 8,
+                        Padding(
+                          padding: EdgeInsets.only(left: 5, bottom: 5),
+                          child: Text(
+                            '12 pending ',
+                            style: TextStyle(
+                              fontSize: 16,
+                              letterSpacing: 1.2,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                         ),
-                        child: Flexible(
+                        Expanded(
                           child: TaskList(),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 )
               ],

@@ -9,7 +9,7 @@ import '../screens/home_screen.dart';
 
 @AdaptiveAutoRouter(
   routes: [
-    AutoRoute(page: Body1Screen, initial: true),
+    AutoRoute(page: SplashScreen, initial: true),
     CustomRoute(
       path: HomeScreen.tag,
       page: HomeScreen,
@@ -34,14 +34,12 @@ import '../screens/home_screen.dart';
       transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 100,
     ),
-    /*
     CustomRoute(
       path: Body1Screen.tag,
       page: Body1Screen,
       transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 100,
     ),
-     */
   ],
 )
 class $AppRouter {}

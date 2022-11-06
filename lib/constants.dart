@@ -7,6 +7,7 @@ const kScaffoldColor = Color(0xFF0D1020);
 const kShadowColor = Color(0xffEE2F69);
 const kGradientColor = Color(0xFF710928);
 const kSheetColor = Color(0xFF170F20);
+const kListTileColor = Color(0xFF1D1E33);
 
 double kbuttonTextSize = 15;
 

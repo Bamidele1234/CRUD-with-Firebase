@@ -38,5 +38,13 @@ class MyTheme {
     bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: kSheetColor,
     ),
+    listTileTheme: ListTileThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      // horizontalTitleGap: 7, <= If I eventually decide to add a rounded check box
+      style: ListTileStyle.list,
+      tileColor: kListTileColor,
+    ),
   );
 }
