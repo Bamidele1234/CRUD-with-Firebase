@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:exercise6/screens/auth_page/auth_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,18 +20,27 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   initState() {
     super.initState();
-    startTime();
+    checkFirstSeen();
   }
 
-  // Navigate to the HomeScreen 2 secs after this screen has been initialized
-  startTime() async {
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool seen = (prefs.getBool('seen') ?? false);
+    if (!seen) {
+      await prefs.setBool('seen', true);
+    }
+
     return Timer(
       const Duration(milliseconds: 2000),
-      myRoute,
+      () {
+        if (seen) {
+          context.router.replaceNamed(AuthScreen.tag);
+        } else {
+          context.router.replaceNamed(HomeScreen.tag);
+        }
+      },
     );
   }
-
-  myRoute() => context.router.replaceNamed(HomeScreen.tag);
 
   @override
   Widget build(BuildContext context) {

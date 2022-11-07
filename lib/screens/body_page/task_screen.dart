@@ -1,17 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:exercise6/constants.dart';
-import 'package:exercise6/reusables/back_button.dart';
 import 'package:exercise6/list/task_list.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../reusables/edit_task_sheet.dart';
+import '../../reusables/edit_task_sheet.dart';
 
-class Body1Screen extends StatelessWidget {
-  const Body1Screen({Key? key}) : super(key: key);
+class TaskScreen extends StatelessWidget {
+  const TaskScreen({Key? key}) : super(key: key);
 
   static const tag = '/body';
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -43,15 +45,37 @@ class Body1Screen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const MyBackButton(myPadding: 6),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 9, top: 10),
+                      child: IconButton(
+                        tooltip: 'Log out',
+                        onPressed: () {
+                          context.router.pop();
+                          user.signOut();
+                        },
+                        icon: const Icon(
+                          Icons.logout_rounded,
+                          size: 31,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
                 Expanded(
                   child: Padding(
                     padding: kPagePadding.copyWith(
-                        top: 10, bottom: 12, left: 15, right: 15),
+                      top: 0,
+                      bottom: 12,
+                      left: 15,
+                      right: 15,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Tasks',
                           style: TextStyle(
                             fontFamily: 'Asap',
@@ -62,17 +86,17 @@ class Body1Screen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 5, bottom: 5),
+                          padding: const EdgeInsets.only(left: 5, bottom: 5),
                           child: Text(
-                            '12 pending ',
-                            style: TextStyle(
+                            user.currentUser!.email!,
+                            style: const TextStyle(
                               fontSize: 16,
                               letterSpacing: 1.2,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           child: TaskList(),
                         ),
                       ],

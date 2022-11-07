@@ -1,11 +1,14 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:exercise6/constants.dart';
-import 'package:exercise6/screens/body1_screen.dart';
-import 'package:exercise6/screens/login_screen.dart';
+import 'package:exercise6/screens/body_page/task_screen.dart';
+import 'package:exercise6/screens/auth_page/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../reusables/back_button.dart';
+import '../../reusables/back_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -20,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final myFullNameController = TextEditingController();
   final myEmailController = TextEditingController();
   final myPasswordController = TextEditingController();
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ElevatedButton(
                           style: kSignInStyle,
                           onPressed: () {
-                            context.router.pushNamed(Body1Screen.tag);
+                            context.router.pushNamed(TaskScreen.tag);
                           },
                           child: const Text("Register Now"),
                         ),
@@ -134,5 +138,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  Future signIn() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    try {
+      await auth.createUserWithEmailAndPassword(
+        email: myEmailController.text.trim(),
+        password: myPasswordController.text.trim(),
+      );
+      context.router.pushNamed(TaskScreen.tag);
+    } on FirebaseAuthException catch (e) {
+      log(e.toString());
+    }
+    // keeps popping routes until predicate is satisfied
+    context.router.popUntil((route) => route.isFirst);
   }
 }

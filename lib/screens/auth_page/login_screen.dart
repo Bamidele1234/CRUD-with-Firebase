@@ -1,15 +1,15 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:exercise6/screens/body_page/task_screen.dart';
 import 'package:exercise6/screens/reset_password.dart';
-import 'package:exercise6/screens/sign_up.dart';
+import 'package:exercise6/screens/auth_page/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import '../reusables/back_button.dart';
-import 'body1_screen.dart';
+import '../../constants.dart';
+import '../../reusables/back_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -21,8 +21,17 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // Define the controllers
   final myEmailController = TextEditingController();
   final myPasswordController = TextEditingController();
+  final auth = FirebaseAuth.instance;
+  late bool _passwordVisible;
+
+  @override
+  void initState() {
+    super.initState();
+    _passwordVisible = true;
+  }
 
   @override
   void dispose() {
@@ -79,8 +88,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: TextFormField(
                                   controller: myPasswordController,
                                   textInputAction: TextInputAction.done,
-                                  decoration: const InputDecoration(
+                                  obscureText:
+                                      _passwordVisible, //This will obscure text dynamically
+                                  decoration: InputDecoration(
                                     hintText: 'Password',
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        // Based on passwordVisible state choose the icon
+                                        _passwordVisible
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: Colors.white.withOpacity(0.8),
+                                      ),
+                                      onPressed: () {
+                                        // Update the state i.e. toggle the state of passwordVisible variable
+                                        setState(() {
+                                          _passwordVisible = !_passwordVisible;
+                                        });
+                                      },
+                                    ),
                                   ),
                                 ),
                               )
@@ -111,8 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         ElevatedButton(
                           style: kSignInStyle,
-                          onPressed: () {
-                            context.router.pushNamed(Body1Screen.tag);
+                          onPressed: () async {
+                            signIn();
                           },
                           child: const Text("Sign In"),
                         ),
@@ -168,10 +194,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: myEmailController.text.trim(),
         password: myPasswordController.text.trim(),
       );
+      context.router.pushNamed(TaskScreen.tag);
     } on FirebaseAuthException catch (e) {
       log(e.toString());
     }

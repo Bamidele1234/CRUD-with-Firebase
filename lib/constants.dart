@@ -1,5 +1,5 @@
-import 'package:exercise6/screens/login_screen.dart';
-import 'package:exercise6/screens/sign_up.dart';
+import 'package:exercise6/screens/auth_page/login_screen.dart';
+import 'package:exercise6/screens/auth_page/sign_up.dart';
 import 'package:flutter/material.dart';
 
 // Essential Colors
