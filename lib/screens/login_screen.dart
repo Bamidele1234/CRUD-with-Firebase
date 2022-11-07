@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:exercise6/screens/reset_password.dart';
 import 'package:exercise6/screens/sign_up.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +11,26 @@ import '../constants.dart';
 import '../reusables/back_button.dart';
 import 'body1_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   static const tag = '/login';
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final myEmailController = TextEditingController();
   final myPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    myEmailController.dispose();
+    myPasswordController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +65,7 @@ class LoginScreen extends StatelessWidget {
                                 child: TextFormField(
                                   maxLength: 40,
                                   controller: myEmailController,
+                                  textInputAction: TextInputAction.next,
                                   decoration: const InputDecoration(
                                     hintText: 'Email',
                                   ),
@@ -60,6 +78,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 child: TextFormField(
                                   controller: myPasswordController,
+                                  textInputAction: TextInputAction.done,
                                   decoration: const InputDecoration(
                                     hintText: 'Password',
                                   ),
@@ -138,5 +157,25 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future signIn() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: myEmailController.text.trim(),
+        password: myPasswordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      log(e.toString());
+    }
+    // keeps popping routes until predicate is satisfied
+    context.router.popUntil((route) => route.isFirst);
   }
 }

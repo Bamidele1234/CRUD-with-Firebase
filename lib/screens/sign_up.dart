@@ -7,10 +7,16 @@ import 'package:flutter/material.dart';
 
 import '../reusables/back_button.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   static const tag = '/signup';
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final myFullNameController = TextEditingController();
   final myEmailController = TextEditingController();
   final myPasswordController = TextEditingController();

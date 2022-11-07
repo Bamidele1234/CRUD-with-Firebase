@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "516830111627",
+    "project_id": "crud-86d8c",
+    "storage_bucket": "crud-86d8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516830111627:android:eaf5f6e6605b638bb7b18e",
+        "android_client_info": {
+          "package_name": "com.bamidele.exercise6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516830111627-97q8jaiqnf2a89mue1v6o5grip0idcc4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwnhVjVUzYq_WdLDSU645CIkEB7pHt7ws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516830111627-97q8jaiqnf2a89mue1v6o5grip0idcc4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
