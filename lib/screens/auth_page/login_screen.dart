@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../reusables/back_button.dart';
+import '../../utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -138,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         ElevatedButton(
                           style: kSignInStyle,
-                          onPressed: () async {
+                          onPressed: () {
                             signIn();
                           },
                           child: const Text("Sign In"),
@@ -187,10 +188,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future signIn() async {
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) return;
+    // I need to fix this later
+    // final isValid = formKey.currentState!.validate();
+    //if (!isValid) return;
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => const Center(
         child: CircularProgressIndicator(),
       ),
@@ -204,6 +207,8 @@ class _LoginScreenState extends State<LoginScreen> {
       context.router.pushNamed(TaskScreen.tag);
     } on FirebaseAuthException catch (e) {
       log(e.toString());
+
+      Utils.showSnackbar(e.message);
     }
     // keeps popping routes until predicate is satisfied
     context.router.popUntil((route) => route.isFirst);
