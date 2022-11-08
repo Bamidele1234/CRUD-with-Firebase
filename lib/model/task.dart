@@ -26,4 +26,12 @@ class Todo {
         'isDone': isDone,
         'sender': sender,
       };
+
+  static Todo fromJson(Map<String, dynamic> json) => Todo(
+        id: json['id'],
+        tag: json['tag'],
+        task: json['task'],
+        isDone: json['isDone'],
+        sender: json['sender'],
+      );
 }

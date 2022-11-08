@@ -1,9 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exercise6/bloc/app_bloc.dart';
 import 'package:exercise6/constants.dart';
-import 'package:exercise6/model/task.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,29 +18,11 @@ class EditTaskSheet extends StatefulWidget {
 
 class _EditTaskSheetState extends State<EditTaskSheet> {
   final editTaskController = TextEditingController();
-  final _fireStore = FirebaseFirestore.instance;
-  final _user = FirebaseAuth.instance;
-  late User loggedInUser;
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
 
   @override
   void dispose() {
     editTaskController.dispose();
     super.dispose();
-  }
-
-  getCurrentUser() {
-    try {
-      final user = _user.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-      }
-    } catch (_) {}
   }
 
   @override
@@ -114,7 +93,7 @@ class _EditTaskSheetState extends State<EditTaskSheet> {
                           ),
                           onPressed: () {
                             if (data.formKey.currentState!.validate()) {
-                              addTask(task: editTaskController.value.text);
+                              data.addTask(task: editTaskController.value.text);
                               context.router.pop();
                             }
                           },
@@ -129,18 +108,5 @@ class _EditTaskSheetState extends State<EditTaskSheet> {
         );
       },
     );
-  }
-
-  Future addTask({required String task}) async {
-    final docUser = _fireStore.collection('users').doc();
-    // Create the object
-    final user = Todo(
-      task: task,
-      sender: loggedInUser.email,
-    );
-
-    // Update the object
-    user.tag = docUser.id;
-    await docUser.set(user.toJson());
   }
 }
