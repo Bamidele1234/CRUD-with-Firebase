@@ -1,4 +1,5 @@
 import 'package:exercise6/theme_data/theme.dart';
+import 'package:exercise6/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      scaffoldMessengerKey: Utils.messengerKey,
       // Make it responsive to different screen sizes
       builder: (context, child) => ResponsiveWrapper.builder(
         child,

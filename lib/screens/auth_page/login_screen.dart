@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // Define the controllers
   final myEmailController = TextEditingController();
   final myPasswordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   late bool _passwordVisible;
 
@@ -186,6 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future signIn() async {
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) return;
     showDialog(
       context: context,
       builder: (context) => const Center(

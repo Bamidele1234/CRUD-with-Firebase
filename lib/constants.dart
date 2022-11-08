@@ -8,6 +8,7 @@ const kShadowColor = Color(0xffEE2F69);
 const kGradientColor = Color(0xFF710928);
 const kSheetColor = Color(0xFF170F20);
 const kListTileColor = Color(0xFF1D1E33);
+const kErrorColor = Color(0xffFF1F1F);
 
 double kbuttonTextSize = 15;
 

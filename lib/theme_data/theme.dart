@@ -18,10 +18,21 @@ class MyTheme {
         fontWeight: FontWeight.w600,
         fontSize: 16,
       ),
-      errorStyle: const TextStyle(
-        color: kShadowColor,
+      errorStyle: TextStyle(
+        color: kErrorColor.withOpacity(0.7),
       ),
-      errorBorder: kmyBorder,
+      errorBorder: kmyBorder.copyWith(
+        borderSide: BorderSide(
+          color: kErrorColor.withOpacity(0.7),
+          width: 1.5,
+        ),
+      ),
+      focusedErrorBorder: kmyBorder.copyWith(
+        borderSide: BorderSide(
+          color: kErrorColor.withOpacity(0.7),
+          width: 2,
+        ),
+      ),
       enabledBorder: kmyBorder.copyWith(
         borderSide: BorderSide(
           color: Colors.white.withOpacity(0.4),
@@ -31,7 +42,7 @@ class MyTheme {
       focusedBorder: kmyBorder.copyWith(
         borderSide: const BorderSide(
           color: Colors.white,
-          width: 2.2,
+          width: 2,
         ),
       ),
     ),
