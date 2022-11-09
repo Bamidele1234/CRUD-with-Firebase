@@ -83,3 +83,10 @@ const kRoundedBorder = RoundedRectangleBorder(
     topRight: Radius.circular(30.0),
   ),
 );
+
+// The shape of the alert dialog and the showTime picker
+const kDialogShape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.all(
+    Radius.circular(20),
+  ),
+);

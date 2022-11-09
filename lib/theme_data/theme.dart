@@ -53,9 +53,15 @@ class MyTheme {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      // horizontalTitleGap: 7, <= If I eventually decide to add a rounded check box
-      style: ListTileStyle.list,
+      horizontalTitleGap: 7,
+      style: ListTileStyle.drawer,
       tileColor: kListTileColor,
+    ),
+    dialogTheme: const DialogTheme(
+      backgroundColor: kListTileColor,
+      shape: kDialogShape,
+      contentTextStyle: TextStyle(fontSize: 17),
+      titleTextStyle: TextStyle(fontSize: 24),
     ),
   );
 }

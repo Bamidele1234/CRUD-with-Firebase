@@ -1,9 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:exercise6/constants.dart';
 import 'package:exercise6/list/task_list.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import '../../reusables/confirm_dialog.dart';
 import '../../reusables/edit_task_sheet.dart';
 
 class TaskScreen extends StatelessWidget {
@@ -13,7 +11,6 @@ class TaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -25,7 +22,7 @@ class TaskScreen extends StatelessWidget {
                 isScrollControlled: true,
                 shape: kRoundedBorder,
                 context: context,
-                builder: (context) => const EditTaskSheet(
+                builder: (context) => EditTaskSheet(
                   function: '/add',
                 ),
               );
@@ -52,9 +49,12 @@ class TaskScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 9, top: 10),
                       child: IconButton(
                         tooltip: 'Log out',
-                        onPressed: () {
-                          context.router.pop();
-                          user.signOut();
+                        onPressed: () async {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                const ConfirmDialog(),
+                          );
                         },
                         icon: const Icon(
                           Icons.logout_rounded,
@@ -74,8 +74,8 @@ class TaskScreen extends StatelessWidget {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const Text(
+                      children: const [
+                        Text(
                           'Tasks',
                           style: TextStyle(
                             fontFamily: 'Asap',
@@ -86,17 +86,17 @@ class TaskScreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 5, bottom: 5),
+                          padding: EdgeInsets.only(left: 5, bottom: 5),
                           child: Text(
-                            user.currentUser!.email!,
-                            style: const TextStyle(
+                            'Swipe a task right to delete 👉',
+                            style: TextStyle(
                               fontSize: 16,
-                              letterSpacing: 1.2,
+                              letterSpacing: 1,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
-                        const Expanded(
+                        Expanded(
                           child: TaskList(),
                         ),
                       ],

@@ -35,14 +35,19 @@ class TaskList extends StatelessWidget {
                         physics:
                             const BouncingScrollPhysics(), // Create a bouncy scroll effect
                       ),
-                      child: ListView.builder(
-                        itemCount: snapshot.data?.length,
-                        itemBuilder: (context, index) {
-                          Todo task = snapshot.data![index];
-                          return TaskTile(
-                            item: task,
-                          );
-                        },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5,
+                        ),
+                        child: ListView.builder(
+                          itemCount: snapshot.data?.length,
+                          itemBuilder: (context, index) {
+                            Todo task = snapshot.data![index];
+                            return TaskTile(
+                              item: task,
+                            );
+                          },
+                        ),
                       ),
                     )
                   : const NoneAvailable(

@@ -5,6 +5,7 @@ import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../bloc/app_bloc.dart';
 import '../model/task.dart';
+import '../utils.dart';
 import 'edit_task_sheet.dart';
 
 class TaskTile extends StatelessWidget {
@@ -25,6 +26,7 @@ class TaskTile extends StatelessWidget {
             direction: DismissDirection.startToEnd,
             onDismissed: (direction) {
               data.deleteTask(item: item);
+              Utils.showSnackbar('Successfully deleted \'${item.task}\'');
             },
             background: Container(
               color: Colors.transparent,
@@ -87,7 +89,14 @@ class TaskTile extends StatelessWidget {
                 ),
                 title: Text(
                   item.task,
-                  style: const TextStyle(fontSize: 18.5, letterSpacing: 0.6),
+                  style: TextStyle(
+                    fontSize: 18.5,
+                    decoration: item.isDone
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                    decorationColor: Colors.black.withOpacity(0.8),
+                    decorationThickness: 3,
+                  ),
                 ),
               ),
             ),

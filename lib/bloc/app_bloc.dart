@@ -1,8 +1,14 @@
+import 'dart:async';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/task.dart';
+import '../screens/auth_page/auth_screen.dart';
+import '../screens/intro_page/home_screen.dart';
 
 class AppBloc extends ChangeNotifier {
   // The Global key for the forms
@@ -10,8 +16,9 @@ class AppBloc extends ChangeNotifier {
 
   // Instantiate Firebase Firestore and Firebase Authentication
   final _fireStore = FirebaseFirestore.instance;
-
   final _user = FirebaseAuth.instance;
+
+  bool? showArrow;
 
   Todo? selectedItem;
 
@@ -43,6 +50,25 @@ class AppBloc extends ChangeNotifier {
   Future deleteTask({required Todo item}) async {
     final docUser = _fireStore.collection('users').doc(item.tag);
     await docUser.delete();
+  }
+
+  Future checkFirstSeen(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool seen = (prefs.getBool('seen') ?? false);
+    if (!seen) {
+      await prefs.setBool('seen', true);
+    }
+
+    return Timer(
+      const Duration(milliseconds: 2000),
+      () {
+        if (seen) {
+          context.router.replaceNamed(AuthScreen.tag);
+        } else {
+          context.router.replaceNamed(HomeScreen.tag);
+        }
+      },
+    );
   }
 
   Stream<List<Todo>> readTasks() => _fireStore
