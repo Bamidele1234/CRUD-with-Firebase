@@ -4,31 +4,21 @@ import 'package:exercise6/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class EditTaskSheet extends StatefulWidget {
-  const EditTaskSheet({
+class EditTaskSheet extends StatelessWidget {
+  EditTaskSheet({
     required this.function,
     Key? key,
   }) : super(key: key);
 
   final String function;
-
-  @override
-  State<EditTaskSheet> createState() => _EditTaskSheetState();
-}
-
-class _EditTaskSheetState extends State<EditTaskSheet> {
   final editTaskController = TextEditingController();
 
   @override
-  void dispose() {
-    editTaskController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final add = widget.function == '/add' ? true : false;
-
+    // Ensure the text field displays the corresponding value
+    editTaskController.text = function == '/add'
+        ? ''
+        : Provider.of<AppBloc>(context, listen: false).selectedItem!.task;
     return Consumer<AppBloc>(
       builder: (BuildContext context, data, Widget? child) {
         return SingleChildScrollView(
@@ -67,12 +57,14 @@ class _EditTaskSheetState extends State<EditTaskSheet> {
                             ),
                             autofocus: true,
                             decoration: InputDecoration(
-                              hintText: add ? 'Create task' : 'Change task',
+                              hintText: function == '/add'
+                                  ? 'Create task'
+                                  : 'Change task',
                               hintStyle: const TextStyle(
                                 fontSize: 19,
                                 fontWeight: FontWeight.w400,
                               ),
-                              labelText: add ? 'Add' : 'Edit',
+                              labelText: function == '/add' ? 'Add' : 'Edit',
                               labelStyle: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 letterSpacing: 1.5,
@@ -93,7 +85,12 @@ class _EditTaskSheetState extends State<EditTaskSheet> {
                           ),
                           onPressed: () {
                             if (data.formKey.currentState!.validate()) {
-                              data.addTask(task: editTaskController.value.text);
+                              final text = editTaskController.value.text.trim();
+                              if (function == '/add') {
+                                data.addTask(task: text);
+                              } else {
+                                data.editTask(data: text);
+                              }
                               context.router.pop();
                             }
                           },

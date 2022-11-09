@@ -13,6 +13,8 @@ class AppBloc extends ChangeNotifier {
 
   final _user = FirebaseAuth.instance;
 
+  Todo? selectedItem;
+
   Future addTask({required String task}) async {
     final docUser = _fireStore.collection('users').doc();
     // Create the object
@@ -25,6 +27,22 @@ class AppBloc extends ChangeNotifier {
 
     // Update the object
     await docUser.set(user.toJson());
+  }
+
+  Future editTask({required String data}) async {
+    final docUser = _fireStore.collection('users').doc(selectedItem!.tag);
+    selectedItem!.task = data;
+    await docUser.update(selectedItem!.toJson());
+  }
+
+  Future updateTask({required Todo item}) async {
+    final docUser = _fireStore.collection('users').doc(item.tag);
+    await docUser.update(item.toJson());
+  }
+
+  Future deleteTask({required Todo item}) async {
+    final docUser = _fireStore.collection('users').doc(item.tag);
+    await docUser.delete();
   }
 
   Stream<List<Todo>> readTasks() => _fireStore
