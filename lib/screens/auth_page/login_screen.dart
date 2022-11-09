@@ -7,7 +7,9 @@ import 'package:exercise6/screens/auth_page/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../bloc/app_bloc.dart';
 import '../../constants.dart';
 import '../../reusables/back_button.dart';
 import '../../utils.dart';
@@ -45,152 +47,160 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          decoration: kPageDecoration,
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const MyBackButton(),
-                Padding(
-                  padding: kPagePadding,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          'Let\'s sign you in',
-                          textAlign: TextAlign.start,
-                          style: kMainTextStyle,
-                        ),
-                        Form(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 40),
-                                child: TextFormField(
-                                  maxLength: 40,
-                                  controller: myEmailController,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Email',
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 8,
-                                  bottom: 10,
-                                ),
-                                child: TextFormField(
-                                  controller: myPasswordController,
-                                  textInputAction: TextInputAction.done,
-                                  obscureText:
-                                      _passwordVisible, //This will obscure text dynamically
-                                  decoration: InputDecoration(
-                                    hintText: 'Password',
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        // Based on passwordVisible state choose the icon
-                                        _passwordVisible
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                        color: Colors.white.withOpacity(0.8),
+    return Consumer<AppBloc>(
+      builder: (BuildContext context, data, Widget? child) {
+        return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Container(
+              decoration: kPageDecoration,
+              child: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const MyBackButton(
+                      toHomeScreen: true,
+                    ),
+                    Padding(
+                      padding: kPagePadding,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              'Let\'s sign you in',
+                              textAlign: TextAlign.start,
+                              style: kMainTextStyle,
+                            ),
+                            Form(
+                              key: formKey,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 40),
+                                    child: TextFormField(
+                                      maxLength: 40,
+                                      controller: myEmailController,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Email',
                                       ),
-                                      onPressed: () {
-                                        // Update the state i.e. toggle the state of passwordVisible variable
-                                        setState(() {
-                                          _passwordVisible = !_passwordVisible;
-                                        });
-                                      },
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            context.router.pushNamed(ResetPassword.tag);
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 5,
-                            ),
-                            child: Text(
-                              'Forgot Password',
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 8,
+                                      bottom: 10,
+                                    ),
+                                    child: TextFormField(
+                                      controller: myPasswordController,
+                                      textInputAction: TextInputAction.done,
+                                      obscureText:
+                                          _passwordVisible, //This will obscure text dynamically
+                                      decoration: InputDecoration(
+                                        hintText: 'Password',
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                            // Based on passwordVisible state choose the icon
+                                            _passwordVisible
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,
+                                            color:
+                                                Colors.white.withOpacity(0.8),
+                                          ),
+                                          onPressed: () {
+                                            // Update the state i.e. toggle the state of passwordVisible variable
+                                            setState(() {
+                                              _passwordVisible =
+                                                  !_passwordVisible;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 45,
-                        ),
-                        ElevatedButton(
-                          style: kSignInStyle,
-                          onPressed: () {
-                            signIn();
-                          },
-                          child: const Text("Sign In"),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Center(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Don\'t have an account ?',
+                            GestureDetector(
+                              onTap: () {
+                                context.router.pushNamed(ResetPassword.tag);
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 5,
+                                ),
+                                child: Text(
+                                  'Forgot Password',
+                                  textAlign: TextAlign.end,
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.white.withOpacity(0.65),
                                   ),
                                 ),
-                                TextSpan(
-                                  text: ' Register',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      context.router
-                                          .replaceNamed(SignUpScreen.tag);
-                                    },
-                                )
-                              ],
+                              ),
                             ),
-                          ),
+                            const SizedBox(
+                              height: 45,
+                            ),
+                            ElevatedButton(
+                              style: kSignInStyle,
+                              onPressed: () {
+                                signIn();
+                              },
+                              child: const Text("Sign In"),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Center(
+                              child: RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Don\'t have an account ?',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white.withOpacity(0.65),
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: ' Register',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          context.router
+                                              .replaceNamed(SignUpScreen.tag);
+                                        },
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
   Future signIn() async {
-    // I need to fix this later
-    // final isValid = formKey.currentState!.validate();
-    //if (!isValid) return;
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) return;
     showDialog(
       context: context,
       barrierDismissible: false,

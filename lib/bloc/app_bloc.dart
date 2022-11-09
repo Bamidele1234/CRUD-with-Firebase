@@ -55,6 +55,7 @@ class AppBloc extends ChangeNotifier {
   Future checkFirstSeen(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool seen = (prefs.getBool('seen') ?? false);
+    showArrow = !seen;
     if (!seen) {
       await prefs.setBool('seen', true);
     }
