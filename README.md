@@ -1,6 +1,6 @@
-# exercise6
+# CRUD
 
-A new Flutter project.
+Performed CRUD operations using an cloud Backend-as-a-Service
 
 ## Getting Started
 
